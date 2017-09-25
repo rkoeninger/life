@@ -7,4 +7,4 @@ addons:
     packages:
       - gnat-4.8
 script:
-  - gnatmake src/main.adb
+  - gnatmake src/main
