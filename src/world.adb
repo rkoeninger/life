@@ -6,7 +6,7 @@ package body World is
 
    function Get_Spot
      (W : World_Grid;
-      X, Y : Integer)
+      X, Y : Natural)
       return Boolean
    is
    begin

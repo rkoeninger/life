@@ -2,14 +2,17 @@ package World is
 
    type Boolean_Matrix is array (Natural range <>, Natural range <>) of Boolean;
 
-   type World_Grid is record
-      Width, Height : Integer;
-      Grid : Boolean_Matrix (0 .. 15, 0 .. 15);
+   type World_Grid (Size : Natural) is record
+      Grid : Boolean_Matrix (0 .. Size, 0 .. Size);
    end record;
 
    function Get_Spot
      (W : World_Grid;
-      X, Y : Integer)
+      X, Y : Natural)
       return Boolean;
+
+private
+
+   -- private members
 
 end World;
