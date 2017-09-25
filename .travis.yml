@@ -7,4 +7,5 @@ addons:
     packages:
       - gprbuild
 script:
+  - mkdir -p obj
   - gprbuild
