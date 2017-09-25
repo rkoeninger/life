@@ -1,0 +1,10 @@
+notifications:
+  email: false
+language: generic
+sudo: required
+addons:
+  apt:
+    install:
+      - gnat
+script:
+  - gnatmake life.gpr
