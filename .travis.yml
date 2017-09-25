@@ -5,7 +5,6 @@ sudo: required
 addons:
   apt:
     packages:
-      - gprbuild
+      - gnat-4.8
 script:
-  - mkdir -p obj
-  - gprbuild
+  - gnatmake src/main
