@@ -9,10 +9,8 @@ package body World is
       X, Y : Integer)
       return Boolean
    is
-      Index : Integer;
    begin
-      Index := Y * W.Width + X;
-      return W.Grid (Index);
+      return W.Grid (X, Y);
    end Get_Spot;
 
 end World;

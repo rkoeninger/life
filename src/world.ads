@@ -1,10 +1,10 @@
 package World is
 
-   type Boolean_Array is array (Natural range <>) of Boolean;
+   type Boolean_Matrix is array (Natural range <>, Natural range <>) of Boolean;
 
    type World_Grid is record
-      Grid : Boolean_Array (0 .. 255);
       Width, Height : Integer;
+      Grid : Boolean_Matrix (0 .. 15, 0 .. 15);
    end record;
 
    function Get_Spot
