@@ -70,39 +70,22 @@ package body World is
 
    function Live_Neighbors (W : World_Grid; X, Y : Positive) return Natural is
       Count : Natural := 0;
+
+      procedure Count_Neighbor (W : World_Grid; Count : in out Natural; X, Y : Positive) is
+      begin
+         if Get_Spot (W, X, Y) then
+            Count := Count + 1;
+         end if;
+      end Count_Neighbor;
    begin
-      if Get_Spot (W, X - 1, Y - 1) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X, Y - 1) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X + 1, Y - 1) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X - 1, Y) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X + 1, Y) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X - 1, Y + 1) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X, Y + 1) then
-         Count := Count + 1;
-      end if;
-
-      if Get_Spot (W, X + 1, Y + 1) then
-         Count := Count + 1;
-      end if;
-
+      Count_Neighbor (W, Count, X - 1, Y - 1);
+      Count_Neighbor (W, Count, X,     Y - 1);
+      Count_Neighbor (W, Count, X + 1, Y - 1);
+      Count_Neighbor (W, Count, X - 1, Y);
+      Count_Neighbor (W, Count, X + 1, Y);
+      Count_Neighbor (W, Count, X - 1, Y + 1);
+      Count_Neighbor (W, Count, X,     Y + 1);
+      Count_Neighbor (W, Count, X + 1, Y + 1);
       return Count;
    end;
 
