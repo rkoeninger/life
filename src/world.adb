@@ -19,7 +19,7 @@ package body World is
    -- Set_Spot --
    --------------
 
-   procedure Set_Spot (W : in out World_Grid; X, Y: Positive; B: Boolean) is
+   procedure Set_Spot (W : in out World_Grid; X, Y : Positive; B : Boolean) is
    begin
       if W.Step mod 2 = 1 then
          W.Grid1 (X, Y) := B;
