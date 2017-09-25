@@ -10,10 +10,12 @@ package World is
 
    function Get_Spot (W : World_Grid; X, Y : Positive) return Boolean;
 
+   procedure Set_Spot (W : in out World_Grid; X, Y: Positive; B: Boolean);
+
    procedure Run_Step (W : in out World_Grid);
 
 private
 
-   -- private members
+   function Live_Neighbors (W : World_Grid; X, Y : Positive) return Natural;
 
 end World;
