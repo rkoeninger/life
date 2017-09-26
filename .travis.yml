@@ -7,4 +7,4 @@ addons:
     packages:
       - gnat-4.8
 script:
-  - gnatmake src/main
+  - gnatmake -gnat2012 src/main
