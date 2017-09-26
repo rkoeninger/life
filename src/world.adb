@@ -13,7 +13,7 @@ package body World is
       else
          return W.Grid2 (X, Y);
       end if;
-   end Get_Spot;
+   end;
 
    --------------
    -- Set_Spot --
@@ -26,7 +26,7 @@ package body World is
       else
          W.Grid2 (X, Y) := B;
       end if;
-   end Set_Spot;
+   end;
 
    --------------
    -- Run_Step --
@@ -56,7 +56,7 @@ package body World is
             end if;
          end loop;
       end loop;
-   end Run_Step;
+   end;
 
    -------------------
    -- Is_First_Grid --
@@ -65,7 +65,7 @@ package body World is
    function Is_First_Grid (W : World_Grid) return Boolean is
    begin
       return W.Step mod 2 = 1;
-   end Is_First_Grid;
+   end;
 
    --------------------
    -- Live_Neighbors --

@@ -12,4 +12,4 @@ begin
    B := Get_Spot (WG, 1, 1);
    Put_Line ("World Size: " & Integer'Image(WG.Size));
    Put_Line ("Hello Ada!");
-end Main;
+end;
