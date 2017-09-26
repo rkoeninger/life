@@ -1,5 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with World; use World;
+with World;       use World;
 
 procedure Main is
    WG : World_Grid (16);
