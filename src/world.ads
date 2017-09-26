@@ -16,6 +16,8 @@ package World is
 
 private
 
+   function Is_First_Grid (W : World_Grid) return Boolean;
+
    function Live_Neighbors (W : World_Grid; X, Y : Positive) return Natural;
 
 end World;

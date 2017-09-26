@@ -8,7 +8,7 @@ package body World is
    begin
       if X < 1 or Y < 1 or X > W.Size or Y > W.Size then
          return False;
-      elsif W.Step mod 2 = 1 then
+      elsif Is_First_Grid (W) then
          return W.Grid1 (X, Y);
       else
          return W.Grid2 (X, Y);
@@ -21,7 +21,7 @@ package body World is
 
    procedure Set_Spot (W : in out World_Grid; X, Y : Positive; B : Boolean) is
    begin
-      if W.Step mod 2 = 1 then
+      if Is_First_Grid (W) then
          W.Grid1 (X, Y) := B;
       else
          W.Grid2 (X, Y) := B;
@@ -37,13 +37,9 @@ package body World is
       Dest_Grid : Boolean_Matrix (1 .. W.Size, 1 .. W.Size);
       Count : Natural;
    begin
-      if W.Step mod 2 = 1 then
-         Source_Grid := W.Grid1;
-         Dest_Grid := W.Grid2;
-      else
-         Source_Grid := W.Grid1;
-         Dest_Grid := W.Grid2;
-      end if;
+      W.Step := W.Step + 1;
+      Source_Grid := (if Is_First_Grid (W) then W.Grid1 else W.Grid2);
+      Dest_Grid := (if Is_First_Grid (W) then W.Grid2 else W.Grid1);
 
       for X in Positive range 1 .. W.Size loop
          for Y in Positive range 1 .. W.Size loop
@@ -60,9 +56,16 @@ package body World is
             end if;
          end loop;
       end loop;
-
-      W.Step := W.Step + 1;
    end Run_Step;
+
+   -------------------
+   -- Is_First_Grid --
+   -------------------
+
+   function Is_First_Grid (W : World_Grid) return Boolean is
+   begin
+      return W.Step mod 2 = 1;
+   end Is_First_Grid;
 
    --------------------
    -- Live_Neighbors --
