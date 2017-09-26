@@ -6,7 +6,7 @@ package body World is
 
    function Get_Spot (W : World_Grid; X, Y : Positive) return Boolean is
    begin
-      if X < 1 or Y < 1 or X > W.Size or Y > W.Size then
+      if X not in 1 .. W.Size or Y not in 1 .. W.Size then
          return False;
       elsif Is_First_Grid (W) then
          return W.Grid1 (X, Y);
