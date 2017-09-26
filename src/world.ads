@@ -5,7 +5,7 @@ package World is
    type World_Grid (Size : Positive) is record
       Grid1 : Boolean_Matrix (1 .. Size, 1 .. Size);
       Grid2 : Boolean_Matrix (1 .. Size, 1 .. Size);
-      Step : Positive;
+      Step : Natural;
    end record;
 
    function New_World (Size : Positive) return World_Grid;
@@ -17,8 +17,6 @@ package World is
    procedure Run_Step (W : in out World_Grid);
 
 private
-
-   function Is_First_Grid (W : World_Grid) return Boolean;
 
    function Live_Neighbors (W : World_Grid; X, Y : Positive) return Natural;
 

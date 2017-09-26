@@ -9,7 +9,7 @@ package body World is
       return World_Grid'(Size => Size,
                          Grid1 => (others => (others => False)),
                          Grid2 => (others => (others => False)),
-                         Step => 1);
+                         Step => 0);
    end;
 
    --------------
@@ -20,7 +20,7 @@ package body World is
    begin
       if X not in 1 .. W.Size or Y not in 1 .. W.Size then
          return False;
-      elsif Is_First_Grid (W) then
+      elsif W.Size mod 2 = 1 then
          return W.Grid1 (X, Y);
       else
          return W.Grid2 (X, Y);
@@ -33,10 +33,10 @@ package body World is
 
    procedure Set_Spot (W : in out World_Grid; X, Y : Positive; B : Boolean) is
    begin
-      if Is_First_Grid (W) then
-         W.Grid1 (X, Y) := B;
-      else
+      if W.Size mod 2 = 1 then
          W.Grid2 (X, Y) := B;
+      else
+         W.Grid1 (X, Y) := B;
       end if;
    end;
 
@@ -45,38 +45,25 @@ package body World is
    --------------
 
    procedure Run_Step (W : in out World_Grid) is
-      Source_Grid : Boolean_Matrix (1 .. W.Size, 1 .. W.Size);
-      Dest_Grid : Boolean_Matrix (1 .. W.Size, 1 .. W.Size);
       Count : Natural;
    begin
       W.Step := W.Step + 1;
-      Source_Grid := (if Is_First_Grid (W) then W.Grid1 else W.Grid2);
-      Dest_Grid := (if Is_First_Grid (W) then W.Grid2 else W.Grid1);
 
       for X in Positive range 1 .. W.Size loop
          for Y in Positive range 1 .. W.Size loop
             Count := Live_Neighbors (W, X, Y);
 
             if Count < 2 then
-               Dest_Grid (X, Y) := False;              -- Underpopulation
+               Set_Spot (W, X, Y, False);              -- Underpopulation
             elsif Count = 2 then
-               Dest_Grid (X, Y) := Source_Grid (X, Y); -- Survival
+               Set_Spot (W, X, Y, Get_Spot (W, X, Y)); -- Survival
             elsif Count = 3 then
-               Dest_Grid (X, Y) := True;               -- Reproduction
+               Set_Spot (W, X, Y, True);               -- Reproduction
             elsif Count > 3 then
-               Dest_Grid (X, Y) := False;              -- Overpopulation
+               Set_Spot (W, X, Y, False);              -- Overpopulation
             end if;
          end loop;
       end loop;
-   end;
-
-   -------------------
-   -- Is_First_Grid --
-   -------------------
-
-   function Is_First_Grid (W : World_Grid) return Boolean is
-   begin
-      return W.Step mod 2 = 1;
    end;
 
    --------------------
