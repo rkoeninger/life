@@ -5,7 +5,7 @@ sudo: required
 addons:
   apt:
     packages:
-      - gnat-4.8
+      - gnat-4.6
       - libgtkada2.24.1-dev
 script:
   - gnatmake -gnat2012 src/main
