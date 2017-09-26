@@ -1,5 +1,17 @@
 package body World is
 
+   ---------------
+   -- New_World --
+   ---------------
+
+   function New_World (Size : Positive) return World_Grid is
+   begin
+      return World_Grid'(Size => Size,
+                         Grid1 => (others => (others => False)),
+                         Grid2 => (others => (others => False)),
+                         Step => 1);
+   end;
+
    --------------
    -- Get_Spot --
    --------------

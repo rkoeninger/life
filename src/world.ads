@@ -8,6 +8,8 @@ package World is
       Step : Positive;
    end record;
 
+   function New_World (Size : Positive) return World_Grid;
+
    function Get_Spot (W : World_Grid; X, Y : Positive) return Boolean;
 
    procedure Set_Spot (W : in out World_Grid; X, Y : Positive; B : Boolean);
