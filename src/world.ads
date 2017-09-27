@@ -20,4 +20,4 @@ private
 
    function Live_Neighbors (W : World_Grid; X, Y : Positive) return Natural;
 
-end World;
+end;
