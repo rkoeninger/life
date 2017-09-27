@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with World;       use World;
+with Gtk;         use Gtk;
 
 procedure Main is
    WG : World_Grid (16);
