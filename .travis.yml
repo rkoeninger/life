@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
       - gnat-4.6
+      - gprbuild
       - libgtkada2.24.1-dev
 script:
-  - gnatmake -gnat2012 src/main
+  - gprbuild
