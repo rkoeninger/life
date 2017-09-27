@@ -9,4 +9,5 @@ addons:
       - gprbuild
       - libgtkada2.24.1-dev
 script:
+  - mkdir -p obj
   - gprbuild
